@@ -1,0 +1,36 @@
+class Movie:
+    def __init__(self, title, year, rating):
+        self.title = title
+        self.year = year
+        self.rating = rating
+
+comedies = [
+    Movie("The Hangover", 2009, 7.7),
+    Movie("Superbad", 2007, 7.6),
+    Movie("Anchorman: The Legend of Ron Burgundy", 2004, 7.2),
+    Movie("Bridesmaids", 2011, 6.8),
+    Movie("Knocked Up", 2007, 6.9),
+    Movie("Dumb and Dumber", 1994, 7.3),
+    Movie("Monty Python and the Holy Grail", 1975, 8.2),
+    Movie("Airplane!", 1980, 7.7),
+    Movie("The Naked Gun: From the Files of Police Squad!", 1988, 7.6),
+    Movie("Shaun of the Dead", 2004, 7.9)
+]
+
+comedies_sorted_by_title = sorted(comedies, key=lambda x: x.title)
+
+comedies_sorted_by_year_reverse = sorted(comedies, key=lambda x: x.year, reverse=True)
+
+comedies_sorted_by_rating_then_year = sorted(comedies, key=lambda x: (x.rating, x.year), reverse=True)
+
+print("Posortowane według tytułu:")
+for movie in comedies_sorted_by_title:
+    print(movie.title)
+
+print("\nPosortowane malejąco według roku produkcji:")
+for movie in comedies_sorted_by_year_reverse:
+    print(movie.title, movie.year)
+
+print("\nPosortowane według oceny filmu, a w przypadku takiej samej oceny według roku produkcji (malejąco):")
+for movie in comedies_sorted_by_rating_then_year:
+    print(movie.title, movie.rating, movie.year)
