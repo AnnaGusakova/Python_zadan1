@@ -1,0 +1,35 @@
+class Time:
+    def __init__(self, hour, minute):
+        self.hour = hour
+        self.minute = minute
+
+    def is_valid_time(self):
+        return 0 <= self.hour < 24 and 0 <= self.minute < 60
+
+    def add_time(self, other_time):
+        new_hour = self.hour + other_time.hour
+        new_minute = self.minute + other_time.minute
+        if new_minute >= 60:
+            new_hour += 1
+            new_minute -= 60
+        new_hour %= 24
+        return Time(new_hour, new_minute)
+
+    def __lt__(self, other):
+        return (self.hour, self.minute) < (other.hour, other.minute)
+
+time1 = Time(12, 30)
+time2 = Time(8, 45)
+time3 = Time(22, 15)
+
+print("Czy czas 1 jest poprawny?", time1.is_valid_time())
+print("Czy czas 2 jest poprawny?", time2.is_valid_time())
+print("Czy czas 3 jest poprawny?", time3.is_valid_time())
+
+sum_time = time1.add_time(time2)
+print("Suma czasu 1 i czasu 2:", sum_time.hour, "godz.", sum_time.minute, "min.")
+
+times = [time1, time2, time3]
+print("Czasy przed sortowaniem:", [(t.hour, t.minute) for t in times])
+times.sort()
+print("Czasy po sortowaniu:", [(t.hour, t.minute) for t in times])
